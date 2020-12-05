@@ -14,7 +14,6 @@ import org.springframework.web.client.RestTemplate;
 /*
     To customize RestTemplate we use RestTemplateCustomizer provided by Spring
     https://www.baeldung.com/spring-rest-template-builder
-
  */
 @Component
 public class BlockingRestTemplateCustomizer implements RestTemplateCustomizer {

@@ -1,8 +1,6 @@
 package com.spring.msscbrewery.web.controller;
 
-import com.spring.msscbrewery.services.BeerService;
 import com.spring.msscbrewery.services.CustomerService;
-import com.spring.msscbrewery.web.model.BeerDto;
 import com.spring.msscbrewery.web.model.CustomerDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,6 +27,6 @@ public class CustomerController {
     public ResponseEntity<CustomerDto> getBear(@PathVariable UUID customerId)
     {
 
-        return new ResponseEntity<>(customerService.getCustomerById(customerId), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(customerService.getCustomerById(customerId), HttpStatus.OK);
     }
 }
