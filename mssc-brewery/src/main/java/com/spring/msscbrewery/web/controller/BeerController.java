@@ -8,7 +8,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -51,6 +54,7 @@ public class BeerController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     //https://stackoverflow.com/questions/26549379/when-use-responseentityt-and-restcontroller-for-spring-restful-applications/
     public void deleteBeer(UUID beerId) {
+
         beerService.deleteById(beerId);
     }
 }
