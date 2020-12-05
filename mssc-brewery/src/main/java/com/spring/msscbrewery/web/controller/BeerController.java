@@ -22,39 +22,34 @@ public class BeerController {
     }
 
     @GetMapping("/{beerId}")
-    public ResponseEntity<BeerDto> getBear(@PathVariable UUID beerId)
-    {
-
-            return new ResponseEntity<>(beerService.getBearById(beerId), HttpStatus.ACCEPTED);
+    public ResponseEntity<BeerDto> getBear(@PathVariable UUID beerId) {
+        return new ResponseEntity<>(beerService.getBearById(beerId), HttpStatus.ACCEPTED);
     }
 
     @PostMapping // create new beer
-    public ResponseEntity handlePost(@RequestBody BeerDto beerDto)
-    {
+    public ResponseEntity handlePost(@RequestBody BeerDto beerDto) {
         BeerDto savedDto = beerService.saveNewBeer(beerDto);
 
         HttpHeaders headers = new HttpHeaders();
-
         //TODO add host name to url
-        headers.add("Location","/api/v1/beer"+savedDto.getId().toString());
-
-        return new ResponseEntity(headers,HttpStatus.CREATED);
+        headers.add("Location", "/api/v1/beer" + savedDto.getId().toString());
+        return new ResponseEntity(headers, HttpStatus.CREATED);
     }
 
     @PutMapping("/{beerId}")
-    public ResponseEntity handleUpdate(UUID beerId,@RequestBody BeerDto beerDto)
-    {
-        beerService.updateBeer(beerId,beerDto);
+    public ResponseEntity handleUpdate(UUID beerId, @RequestBody BeerDto beerDto) {
+        beerService.updateBeer(beerId, beerDto);
 
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
+
     /*
         Another way of sending response status, we could have done this way in handleUpdate method too
      */
     @DeleteMapping("/{beerId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)  //https://stackoverflow.com/questions/26549379/when-use-responseentityt-and-restcontroller-for-spring-restful-applications/
-    public void deleteBeer(UUID beerId)
-    {
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    //https://stackoverflow.com/questions/26549379/when-use-responseentityt-and-restcontroller-for-spring-restful-applications/
+    public void deleteBeer(UUID beerId) {
         beerService.deleteById(beerId);
     }
 }
