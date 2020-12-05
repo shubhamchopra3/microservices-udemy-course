@@ -25,16 +25,22 @@ public class BreweryClient {
         this.apiHost = apiHost;
     }
 
+    //calling GET endoint
     public BeerDto getBeerById(UUID id) {
 
         return restTemplate.getForObject(apiHost+BEER_PATH_V1+id.toString(),BeerDto.class);
     }
 
+    //calling POST endoint
     public URI saveBeer(BeerDto beerDto)
     {
         return restTemplate.postForLocation(apiHost+BEER_PATH_V1,beerDto);
     }
-
+    //calling PUT endoint
+    public void updateBeer(UUID id, BeerDto beerDto)
+    {
+         restTemplate.put(apiHost+BEER_PATH_V1+id.toString(),beerDto);
+    }
 
 
 }
